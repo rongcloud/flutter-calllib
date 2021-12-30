@@ -10,7 +10,7 @@ CallLib 是在 RTCLib 基础上，额外封装了一套音视频呼叫功能 SDK
 
 ### 步骤 2：SDK 导入
 
-您需要导入融云音视频通话能力库 CallLib，和 RTC 业务所依赖的即时通讯能力库 IMLib。根据您的业务需求，可选择导入美颜扩展库。
+您需要导入融云音视频通话能力库 CallLib。
 
 具体步骤请参阅 <a href="#id_import">导入 CallLib SDK</a>。 
 
@@ -133,10 +133,10 @@ $ flutter pub add rongcloud_call_wrapper_plugin
 
 ```
 dependencies:
-  rongcloud_call_wrapper_plugin: ^5.1.15
+  rongcloud_call_wrapper_plugin: ^5.1.15+1
 ```
 
-2. 在代码中导入 RTC SDK ：
+2. 在代码中导入 Call Lib ：
 
 ``` dart
 import 'package:rongcloud_call_wrapper_plugin/rongcloud_call_wrapper_plugin.dart';
@@ -147,7 +147,7 @@ import 'package:rongcloud_call_wrapper_plugin/rongcloud_call_wrapper_plugin.dart
 | 依赖SDK  | 版本 |
 |:---|:---|
 |IMLib|5.1.6|
-|RTCLib|5.1.15|
+|CallLib|5.1.15|
 
 
 ## 通话管理
