@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.rongcloud.call.wrapper.flutter">
+
+    <application>
+        <meta-data
+            android:name="rc.callflutter"
+            android:value="cn.rongcloud.call.wrapper.flutter.Version" />
+    </application>
+</manifest>

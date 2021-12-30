@@ -1,0 +1,45 @@
+group 'cn.rongcloud.call.wrapper.flutter'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.3'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url "https://maven.rongcloud.cn/repository/maven-releases/"
+        }
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 30
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion 20
+    }
+}
+
+dependencies {
+    api fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    implementation 'cn.rongcloud.sdk:im_lib:5.1.6'
+    implementation 'cn.rongcloud.sdk:call_lib:5.1.15.1'
+    implementation 'cn.rongcloud.sdk:face_beautifier:5.1.15.1'
+}
