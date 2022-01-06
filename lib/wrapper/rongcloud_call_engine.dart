@@ -130,6 +130,7 @@ class RCCallEngine extends CallEngine {
         onConnect?.call();
         break;
       case 'engine:callDidDisconnect':
+        await getCurrentCallSession();
         Map<dynamic, dynamic> arguments = call.arguments;
         int reason = arguments['reason'];
         onDisconnect?.call(RCCallDisconnectReason.values[reason]);
