@@ -22,7 +22,7 @@ Rongcloud calllib interface wrapper for flutter.
   s.vendored_frameworks = 'Frameworks/*.xcframework'
   #s.resource = ['Frameworks/*.bundle']
 
-  s.dependency 'RongCloudIM/IMLib', '5.1.6'
+  s.dependency 'RongCloudIM/IMLib', '5.1.7'
   s.dependency 'RongCloudRTC/RongCallLib', '5.1.15'
   s.dependency 'RongCloudRTC/RongFaceBeautifier', '5.1.15'
 
