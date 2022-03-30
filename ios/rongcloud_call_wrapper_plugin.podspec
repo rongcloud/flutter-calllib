@@ -22,9 +22,9 @@ Rongcloud calllib interface wrapper for flutter.
   s.vendored_frameworks = 'Frameworks/*.xcframework'
   #s.resource = ['Frameworks/*.bundle']
 
-  s.dependency 'RongCloudIM/IMLib', '5.1.7'
-  s.dependency 'RongCloudRTC/RongCallLib', '5.1.15'
-  s.dependency 'RongCloudRTC/RongFaceBeautifier', '5.1.15'
+  s.dependency 'RongCloudIM/IMLib', '5.1.8'
+  s.dependency 'RongCloudRTC/RongCallLib', '5.1.16'
+  s.dependency 'RongCloudRTC/RongFaceBeautifier', '5.1.16'
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
