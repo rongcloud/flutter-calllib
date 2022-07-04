@@ -11,6 +11,7 @@
 #import "RCCallFlutterUtils.h"
 #import "NSDictionary+RCCall.h"
 #import "RCCallViewWrapper.h"
+#import <RongIMLibCore/RongIMLibCore.h>
 
 NSString* RCCall_SetEngineConfig = @"setEngineConfig";
 NSString* RCCall_SetPushConfig = @"setPushConfig";
@@ -383,6 +384,12 @@ NSString* RCCall_ChangeMediaType = @"changeMediaType";
     NSDictionary* arguments = (NSDictionary*)call.arguments;
     if (arguments) {
         NSString* targetId = arguments[@"targetId"];
+        if ([targetId isEqualToString:[RCCoreClient sharedCoreClient].currentUserInfo.userId]) {
+            dispatch_to_main_queue(^{
+                result(nil);
+                return;
+            });
+        }
         RCCallIWMediaType type = [RCCallFlutterUtils toCallIWMediaType:[arguments[@"mediaType"] intValue]];
         id extra = arguments[@"extra"];
         RCCallIWCallSession* session = nil;
