@@ -17,7 +17,7 @@ import io.flutter.view.TextureRegistry;
 
 public class RCCallViewWrapper implements MethodChannel.MethodCallHandler {
 
-    static RCCallViewWrapper getInstance() {
+    public static RCCallViewWrapper getInstance() {
         return RCCallViewWrapper.SingletonHolder.instance;
     }
 

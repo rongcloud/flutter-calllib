@@ -7,8 +7,6 @@ import java.util.List;
 import cn.rongcloud.call.wrapper.config.RCCallIWAndroidPushConfig;
 import cn.rongcloud.call.wrapper.config.RCCallIWAudioCodecType;
 import cn.rongcloud.call.wrapper.config.RCCallIWAudioConfig;
-import cn.rongcloud.call.wrapper.config.RCCallIWBeautyFilter;
-import cn.rongcloud.call.wrapper.config.RCCallIWBeautyOption;
 import cn.rongcloud.call.wrapper.config.RCCallIWCamera;
 import cn.rongcloud.call.wrapper.config.RCCallIWCameraOrientation;
 import cn.rongcloud.call.wrapper.config.RCCallIWEngineConfig;
@@ -68,18 +66,6 @@ final class ArgumentAdapter {
             res.add(fromRCCallIWUserProfile(user));
         }
         return res;
-    }
-
-    public static HashMap<String, Object> fromRCCallIWBeautyOption(RCCallIWBeautyOption option) {
-        HashMap<String, Object> arguments = new HashMap<>();
-        if (option == null) {
-            return arguments;
-        }
-        arguments.put("whitenessLevel", option.getWhitenessLevel());
-        arguments.put("smoothLevel", option.getSmoothLevel());
-        arguments.put("ruddyLevel", option.getRuddyLevel());
-        arguments.put("brightLevel", option.getBrightLevel());
-        return arguments;
     }
 
     public static RCCallIWEngineConfig toRCCallIWEngineConfig(HashMap<String, Object> config) {
@@ -316,33 +302,5 @@ final class ArgumentAdapter {
 
     public static RCCallIWMediaType toRCCallIWMediaType(int index) {
         return RCCallIWMediaType.values()[index];
-    }
-
-    public static RCCallIWBeautyOption toRCCallIWBeautyOption(HashMap<String, Object> option) {
-        if (option == null) {
-            return null;
-        }
-        RCCallIWBeautyOption beautyOption = new RCCallIWBeautyOption();
-        Object whitenessLevel = option.get("whitenessLevel");
-        if (whitenessLevel != null) {
-            beautyOption.setWhitenessLevel((Integer) whitenessLevel);
-        }
-        Object smoothLevel = option.get("smoothLevel");
-        if (smoothLevel != null) {
-            beautyOption.setSmoothLevel((Integer) smoothLevel);
-        }
-        Object ruddyLevel = option.get("ruddyLevel");
-        if (ruddyLevel != null) {
-            beautyOption.setRuddyLevel((Integer) ruddyLevel);
-        }
-        Object brightLevel = option.get("brightLevel");
-        if (brightLevel != null) {
-            beautyOption.setBrightLevel((Integer) brightLevel);
-        }
-        return beautyOption;
-    }
-
-    public static RCCallIWBeautyFilter toRCCallIWBeautyFilter(int filter) {
-        return RCCallIWBeautyFilter.values()[filter];
     }
 }

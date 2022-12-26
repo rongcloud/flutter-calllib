@@ -4,8 +4,11 @@ import 'dart:io';
 import 'package:context_holder/context_holder.dart';
 import 'package:flutter/material.dart';
 import 'package:handy_toast/handy_toast.dart';
+import 'package:rongcloud_beauty_wrapper_plugin/rongcloud_beauty_wrapper_plugin.dart';
+import 'package:rongcloud_beauty_wrapper_plugin/wrapper/rongcloud_beauty_constants.dart';
+import 'package:rongcloud_beauty_wrapper_plugin/wrapper/rongcloud_beauty_options.dart';
 import 'package:rongcloud_call_wrapper_plugin/rongcloud_call_wrapper_plugin.dart';
-import 'package:rongcloud_im_plugin/rongcloud_im_plugin.dart';
+import 'package:rongcloud_im_wrapper_plugin/rongcloud_im_wrapper_plugin.dart';
 
 /// 示例说明：本示例需要分别在 iOS 和 android 设备中运行
 /// 其中 android 设备会登陆用户 A
@@ -58,15 +61,20 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    RongIMClient.init(app_key);
+
+    RCIMIWEngineOptions options = RCIMIWEngineOptions.create();
+
+    RCIMIWEngine imEngine = await RCIMIWEngine.create(app_key, options);
+
     String token = Platform.isAndroid ? token_a : token_b;
-    RongIMClient.connect(token, (code, userId) async {
+    imEngine.onConnected = (int? code, String? userId) async {
       _state = AppState.connected;
       await _initEngine();
       if (mounted) {
         setState(() {});
       }
-    });
+    };
+    imEngine.connect(token, 0);
   }
 
   Future<void> _initEngine() async {
@@ -127,8 +135,9 @@ class _MyAppState extends State<MyApp> {
       _small = null;
 
       _beauty = false;
-      await _engine?.setBeautyFilter(RCCallBeautyFilter.none);
-      await _engine?.setBeautyOption(RCCallBeautyOption.create(), false);
+      await RCBeautyEngine.setBeautyFilter(RCBeautyFilter.none);
+      await RCBeautyEngine.resetBeauty();
+      await RCBeautyEngine.setBeautyOptions(false);
 
       if (mounted) {
         setState(() {});
@@ -620,7 +629,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _beautySwitch() async {
-    RCCallBeautyOption option = RCCallBeautyOption.create(
+    RCBeautyOptions options = RCBeautyOptions.create(
       whitenessLevel: 2,
       smoothLevel: 4,
       ruddyLevel: 3,
@@ -629,11 +638,11 @@ class _MyAppState extends State<MyApp> {
 
     _beauty = !_beauty;
     if (_beauty) {
-      await _engine?.setBeautyOption(option, _beauty);
-      await _engine?.setBeautyFilter(RCCallBeautyFilter.romantic);
+      await RCBeautyEngine.setBeautyOptions(_beauty, options);
+      await RCBeautyEngine.setBeautyFilter(RCBeautyFilter.romantic);
     } else {
-      await _engine?.setBeautyFilter(RCCallBeautyFilter.none);
-      await _engine?.setBeautyOption(option, _beauty);
+      await RCBeautyEngine.setBeautyFilter(RCBeautyFilter.none);
+      await RCBeautyEngine.setBeautyOptions(_beauty, options);
     }
 
     setState(() {});

@@ -17,11 +17,6 @@ NSString* RCCall_SetEngineConfig = @"setEngineConfig";
 NSString* RCCall_SetPushConfig = @"setPushConfig";
 NSString* RCCall_SetAudioConfig = @"setAudioConfig";
 NSString* RCCall_SetVideoConfig = @"setVideoConfig";
-NSString* RCCall_SetBeautyOption = @"setBeautyOption";
-NSString* RCCall_GetBeautyOption = @"getBeautyOption";
-NSString* RCCall_SetBeautyFilter = @"setBeautyFilter";
-NSString* RCCall_GetBeautyFilter = @"getBeautyFilter";
-NSString* RCCall_ResetBeauty = @"resetBeauty";
 NSString* RCCall_StartCall = @"startCall";
 NSString* RCCall_GetCurrentCallSession = @"getCurrentCallSession";
 NSString* RCCall_Accept = @"accept";
@@ -108,16 +103,6 @@ NSString* RCCall_ChangeMediaType = @"changeMediaType";
         [self setAudioConfig:call result:result];
     } else if ([method isEqualToString:RCCall_SetVideoConfig]) {
         [self setVideoConfig:call result:result];
-    } else if ([method isEqualToString:RCCall_SetBeautyOption]) {
-        [self setBeautyOption:call result:result];
-    } else if ([method isEqualToString:RCCall_GetBeautyOption]) {
-        [self getBeautyOption:call result:result];
-    } else if ([method isEqualToString:RCCall_SetBeautyFilter]) {
-        [self setBeautyFilter:call result:result];
-    } else if ([method isEqualToString:RCCall_GetBeautyFilter]) {
-        [self getBeautyFilter:call result:result];
-    } else if ([method isEqualToString:RCCall_ResetBeauty]) {
-        [self resetBeauty:call result:result];
     } else if ([method isEqualToString:RCCall_GetCurrentCallSession]) {
         [self getCurrentCallSession:call result:result];
     } else if ([method isEqualToString:RCCall_Accept]) {
@@ -435,62 +420,6 @@ NSString* RCCall_ChangeMediaType = @"changeMediaType";
         code = 0;
     }
     
-    dispatch_to_main_queue(^{
-        result(@(code));
-    });
-}
-
-- (void)setBeautyOption:(FlutterMethodCall*)call result:(FlutterResult)result {
-    NSInteger code = -1;
-    NSDictionary* arguments = (NSDictionary*)call.arguments;
-    if (arguments) {
-        BOOL enabled = [arguments[@"enabled"] boolValue];
-        RCCallIWBeautyOption* beautyOption =
-        [RCCallFlutterUtils toCallIWBeautyOption:arguments[@"option"]];
-        [_iwEngine setBeautyOption:enabled option:beautyOption];
-        code = 0;
-    }
-    
-    dispatch_to_main_queue(^{
-        result(@(code));
-    });
-}
-
-- (void)getBeautyOption:(FlutterMethodCall*)call result:(FlutterResult)result {
-    RCCallIWBeautyOption* option = [_iwEngine getCurrentBeautyOption];
-    NSDictionary* dic = option != nil ? [RCCallFlutterUtils fromCallIWBeautyOption:option] : nil;
-    dispatch_to_main_queue(^{
-        result(dic);
-    });
-}
-
-- (void)setBeautyFilter:(FlutterMethodCall*)call result:(FlutterResult)result {
-    NSInteger code = -1;
-    NSDictionary* arguments = (NSDictionary*)call.arguments;
-    if (arguments) {
-        RCCallIWBeautyFilter filter =
-        [RCCallFlutterUtils toCallIWBeautyFilter:[arguments[@"filter"] intValue]];
-        [_iwEngine setBeautyFilter:filter];
-        code = 0;
-    }
-    
-    dispatch_to_main_queue(^{
-        result(@(code));
-    });
-}
-
-- (void)getBeautyFilter:(FlutterMethodCall*)call result:(FlutterResult)result {
-    NSInteger code = -1;
-    RCCallIWBeautyFilter filter = [_iwEngine getCurrentBeautyFilter];
-    code = [RCCallFlutterUtils fromCallIWBeautyFilter:filter];
-    dispatch_to_main_queue(^{
-        result(@(code));
-    });
-}
-
-- (void)resetBeauty:(FlutterMethodCall*)call result:(FlutterResult)result {
-    NSInteger code = 0;
-    [_iwEngine resetBeauty];
     dispatch_to_main_queue(^{
         result(@(code));
     });

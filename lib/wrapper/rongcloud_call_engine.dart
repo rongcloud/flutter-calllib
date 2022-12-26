@@ -269,57 +269,6 @@ class RCCallEngine extends CallEngine {
     return code;
   }
 
-  /// 设置美颜参数
-  ///
-  /// [enabled] 是否开启美颜 默认关闭
-  /// [option] 美颜配置参数
-  Future<int> setBeautyOption(RCCallBeautyOption option, bool enabled) async {
-    Map<String, dynamic> beautyOption = option.toJson();
-    Map<String, dynamic> arguments = {'option': beautyOption, 'enabled': enabled};
-    int code = await _channel.invokeMethod('setBeautyOption', arguments) ?? -1;
-    return code;
-  }
-
-  /// 获取当前美颜参数
-  ///
-  /// return 当前美颜参数对象
-  Future<RCCallBeautyOption?> getBeautyOption() async {
-    Map? resultMap = await _channel.invokeMethod('getBeautyOption');
-    if (resultMap == null) {
-      return null;
-    }
-
-    var option = RCCallBeautyOption.fromJson(resultMap);
-    return option;
-  }
-
-  /// 配置视频滤镜
-  ///
-  /// [filter] 滤镜类型
-  Future<int> setBeautyFilter(RCCallBeautyFilter filter) async {
-    Map<String, dynamic> arguments = {'filter': filter.index};
-    int code = await _channel.invokeMethod('setBeautyFilter', arguments) ?? -1;
-    return code;
-  }
-
-  ///  获取当前滤镜参数
-  ///
-  ///  return 当前滤镜类型
-  Future<RCCallBeautyFilter> getBeautyFilter() async {
-    int code = await _channel.invokeMethod('getBeautyFilter') ?? -1;
-    if (code < 0 || code >= RCCallBeautyFilter.values.length) return RCCallBeautyFilter.none;
-    return RCCallBeautyFilter.values[code];
-  }
-
-  /// 重置美颜的滤镜参数
-  ///
-  /// 因为 RCRTCBeautyEngine 类是单例对象，所以会保留开发者设置的美颜参数或滤镜类型，
-  /// 在需要重置美颜的时候（例如重复进入房间时）需要调用 reset 方法重置所有美颜参数和滤镜。
-  Future<int> resetBeauty() async {
-    int code = await _channel.invokeMethod('resetBeauty') ?? -1;
-    return code;
-  }
-
   /// 获取当前通话 Session
   ///
   /// return 当前通话 Session

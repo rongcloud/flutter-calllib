@@ -238,10 +238,6 @@ NSInteger fromCallIWCallType(RCCallIWCallType type) {
     return (RCCallIWDisconnectReason)(type + 1);
 }
 
-+ (RCCallIWBeautyFilter)toCallIWBeautyFilter:(int)filter {
-    return (RCCallIWBeautyFilter)filter;
-}
-
 + (NSInteger)fromCallIWMediaType:(RCCallIWMediaType)type {
     return _findEnumIndex(@(type), [_getCallIWMediaType() indexDictionary]);
 }
@@ -256,10 +252,6 @@ NSInteger fromCallIWCallType(RCCallIWCallType type) {
 
 + (NSInteger)fromCallIWNetworkQuality:(RCCallIWNetworkQuality)quality {
     return _findEnumIndex(@(quality), [_getCallIWNetworkQuality() indexDictionary]);
-}
-
-+ (NSInteger)fromCallIWBeautyFilter:(RCCallIWBeautyFilter)filter {
-    return filter;
 }
 
 #pragma mark - dic -> oc obj
@@ -342,18 +334,6 @@ NSInteger fromCallIWCallType(RCCallIWCallType type) {
 
 + (RCCallIWUserProfile *)toCallIWUserProfile:(NSDictionary *)arguments {
     return nil;
-}
-
-+ (RCCallIWBeautyOption *)toCallIWBeautyOption:(NSDictionary *)arguments {
-    RCReturnIfNeed(!arguments, nil);
-    
-    RCCallIWBeautyOption *option = [[RCCallIWBeautyOption alloc] init];
-    option.whitenessLevel = [arguments rccall_getInteger:@"whitenessLevel"
-                                            defaultValue:option.whitenessLevel];
-    option.smoothLevel = [arguments rccall_getInteger:@"smoothLevel" defaultValue:option.smoothLevel];
-    option.ruddyLevel = [arguments rccall_getInteger:@"ruddyLevel" defaultValue:option.ruddyLevel];
-    option.brightLevel = [arguments rccall_getInteger:@"brightLevel" defaultValue:option.brightLevel];
-    return option;
 }
 
 #pragma mark - oc obj -> dic
@@ -457,17 +437,6 @@ NSInteger fromCallIWCallType(RCCallIWCallType type) {
     [dictionary setValue:[session.users mapTo:^id _Nonnull(RCCallIWUserProfile *_Nonnull obj) {
         return [RCCallFlutterUtils fromCallIWUserProfile:obj];
     }] forKey:@"users"];
-    return dictionary;
-}
-
-+ (NSDictionary *)fromCallIWBeautyOption:(RCCallIWBeautyOption *)option {
-    RCReturnIfNeed(!option, nil);
-    
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:@(option.whitenessLevel) forKey:@"whitenessLevel"];
-    [dictionary setValue:@(option.smoothLevel) forKey:@"smoothLevel"];
-    [dictionary setValue:@(option.ruddyLevel) forKey:@"ruddyLevel"];
-    [dictionary setValue:@(option.brightLevel) forKey:@"brightLevel"];
     return dictionary;
 }
 

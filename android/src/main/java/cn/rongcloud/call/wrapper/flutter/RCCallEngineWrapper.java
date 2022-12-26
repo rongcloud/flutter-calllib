@@ -11,8 +11,6 @@ import java.util.HashMap;
 
 import cn.rongcloud.call.wrapper.RCCallIWEngine;
 import cn.rongcloud.call.wrapper.config.RCCallIWAudioConfig;
-import cn.rongcloud.call.wrapper.config.RCCallIWBeautyFilter;
-import cn.rongcloud.call.wrapper.config.RCCallIWBeautyOption;
 import cn.rongcloud.call.wrapper.config.RCCallIWCallDisconnectedReason;
 import cn.rongcloud.call.wrapper.config.RCCallIWCamera;
 import cn.rongcloud.call.wrapper.config.RCCallIWEngineConfig;
@@ -78,21 +76,6 @@ public final class RCCallEngineWrapper implements MethodChannel.MethodCallHandle
                 break;
             case RCCall_SetVideoConfig:
                 setVideoConfig(call, result);
-                break;
-            case RCCall_SetBeautyOption:
-                setBeautyOption(call, result);
-                break;
-            case RCCall_GetBeautyOption:
-                getBeautyOption(result);
-                break;
-            case RCCall_SetBeautyFilter:
-                setBeautyFilter(call, result);
-                break;
-            case RCCall_GetBeautyFilter:
-                getBeautyFilter(result);
-                break;
-            case RCCall_ResetBeauty:
-                resetBeauty(result);
                 break;
             case RCCall_GetCurrentCallSession:
                 getCurrentCallSession(result);
@@ -205,61 +188,6 @@ public final class RCCallEngineWrapper implements MethodChannel.MethodCallHandle
             HashMap<String, Object> arguments = call.arguments();
             RCCallIWVideoConfig config = ArgumentAdapter.toRCCallIWVideoConfig(arguments);
             engine.setVideoConfig(config);
-        }
-        MainThreadPoster.success(result, code);
-    }
-
-    private void setBeautyOption(@NonNull MethodCall call, @NonNull Result result) {
-        int code = -1;
-        if (engine != null) {
-            Object arg = call.argument("enabled");
-            if (arg != null) {
-                boolean enabled = (boolean) arg;
-                RCCallIWBeautyOption option = ArgumentAdapter.toRCCallIWBeautyOption(call.argument("option"));
-                engine.setBeautyOption(enabled, option);
-                code = 0;
-            }
-        }
-        MainThreadPoster.success(result, code);
-    }
-
-    private void getBeautyOption(@NonNull Result result) {
-        if (engine != null) {
-            RCCallIWBeautyOption option = engine.getCurrentBeautyOption();
-            HashMap<String, Object> arg = ArgumentAdapter.fromRCCallIWBeautyOption(option);
-            MainThreadPoster.success(result, arg);
-            return;
-        }
-        MainThreadPoster.success(result);
-    }
-
-    private void setBeautyFilter(@NonNull MethodCall call, @NonNull Result result) {
-        int code = -1;
-        if (engine != null) {
-            Object arg = call.argument("filter");
-            if (arg != null) {
-                RCCallIWBeautyFilter filter = ArgumentAdapter.toRCCallIWBeautyFilter((int) arg);
-                engine.setBeautyFilter(filter);
-                code = 0;
-            }
-        }
-        MainThreadPoster.success(result, code);
-    }
-
-    private void getBeautyFilter(@NonNull Result result) {
-        int code = -1;
-        if (engine != null) {
-            RCCallIWBeautyFilter filter = engine.getCurrentBeautyFilter();
-            code = filter.ordinal();
-        }
-        MainThreadPoster.success(result, code);
-    }
-
-    private void resetBeauty(@NonNull Result result) {
-        int code = -1;
-        if (engine != null) {
-            engine.resetBeauty();
-            code = 0;
         }
         MainThreadPoster.success(result, code);
     }
@@ -576,11 +504,6 @@ public final class RCCallEngineWrapper implements MethodChannel.MethodCallHandle
     static final String RCCall_SetPushConfig = "setPushConfig";
     static final String RCCall_SetAudioConfig = "setAudioConfig";
     static final String RCCall_SetVideoConfig = "setVideoConfig";
-    static final String RCCall_SetBeautyOption = "setBeautyOption";
-    static final String RCCall_GetBeautyOption = "getBeautyOption";
-    static final String RCCall_SetBeautyFilter = "setBeautyFilter";
-    static final String RCCall_GetBeautyFilter = "getBeautyFilter";
-    static final String RCCall_ResetBeauty = "resetBeauty";
     static final String RCCall_StartCall = "startCall";
     static final String RCCall_GetCurrentCallSession = "getCurrentCallSession";
     static final String RCCall_Accept = "accept";

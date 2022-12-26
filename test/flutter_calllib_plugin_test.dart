@@ -18,7 +18,6 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    RCCallEngine engine = await RCCallEngine.create();
-    expect(await engine.getBeautyOption(), '42');
+
   });
 }

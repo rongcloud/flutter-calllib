@@ -42,8 +42,6 @@ void dispatch_to_main_queue(dispatch_block_t block);
 
 + (RCCallIWDisconnectReason)toCallIWDisconnectReason:(int)type;
 
-+ (RCCallIWBeautyFilter)toCallIWBeautyFilter:(int)filter;
-
 + (NSInteger)fromCallIWMediaType:(RCCallIWMediaType)type;
 
 + (NSInteger)fromCallIWCamera:(RCCallIWCamera)camera;
@@ -51,8 +49,6 @@ void dispatch_to_main_queue(dispatch_block_t block);
 + (NSInteger)fromCallIWDisconnectReason:(RCCallIWDisconnectReason)reason;
 
 + (NSInteger)fromCallIWNetworkQuality:(RCCallIWNetworkQuality)quality;
-
-+ (NSInteger)fromCallIWBeautyFilter:(RCCallIWBeautyFilter)filter;
 
 #pragma mark - dic -> oc obj
 
@@ -69,8 +65,6 @@ void dispatch_to_main_queue(dispatch_block_t block);
 + (RCCallIWVideoConfig *)toCallIWVideoConfig:(NSDictionary *)arguments;
 
 + (RCCallIWUserProfile *)toCallIWUserProfile:(NSDictionary *)arguments;
-
-+ (RCCallIWBeautyOption *)toCallIWBeautyOption:(NSDictionary *)arguments;
 
 #pragma mark - oc obj -> dic
 
@@ -90,7 +84,6 @@ void dispatch_to_main_queue(dispatch_block_t block);
 
 + (NSDictionary *)fromCallIWCallSession:(RCCallIWCallSession *)session;
 
-+ (NSDictionary *)fromCallIWBeautyOption:(RCCallIWBeautyOption *)option;
 @end
 
 NS_ASSUME_NONNULL_END
