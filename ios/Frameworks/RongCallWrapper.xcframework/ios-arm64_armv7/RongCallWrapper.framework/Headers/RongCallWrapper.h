@@ -24,5 +24,6 @@ FOUNDATION_EXPORT const unsigned char RongCallWrapperVersionString[];
 #import <RongCallWrapper/RCCallIWIOSPushConfig.h>
 #import <RongCallWrapper/RCCallIWAndroidPushConfig.h>
 #import <RongCallWrapper/RCCallIWUserProfile.h>
+#import <RongCallWrapper/RCCallIWBeautyOption.h>
 #import <RongCallWrapper/RCCallIWFlutterView.h>
 #import <RongCallWrapper/RCCallIWVideoFrameDelegate.h>

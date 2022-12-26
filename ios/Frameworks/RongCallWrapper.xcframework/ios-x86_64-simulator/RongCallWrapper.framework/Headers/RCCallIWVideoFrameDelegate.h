@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol RCCallIWSampleBufferVideoFrameDelegate <NSObject>
 
-- (CMSampleBufferRef)onSampleBuffer:(CMSampleBufferRef)sampleBuffer;
+- (void)onPixelBuffer:(CVPixelBufferRef)pixelBuffer;
 
 @end
 

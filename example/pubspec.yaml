@@ -31,7 +31,7 @@ dependencies:
   rongcloud_call_wrapper_plugin:
     path: ../
 
-  rongcloud_beauty_wrapper_plugin: 5.2.5
+  rongcloud_beauty_wrapper_plugin: 5.3.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

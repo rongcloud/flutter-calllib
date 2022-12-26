@@ -426,4 +426,26 @@ typedef NS_ENUM (NSInteger, RCCallIWErrorCode) {
     RCCallIWMediaJoinRoomRefuseError          = 16
 };
 
+/**
+ 滤镜类型
+ */
+typedef NS_ENUM(NSInteger, RCCallIWBeautyFilter) {
+    /*!
+     原图
+     */
+    RCCallIWBeautyFilterNone = 0,
+    /*!
+     唯美
+     */
+    RCCallIWBeautyFilterEsthetic = 1,
+    /*!
+     清新
+     */
+    RCCallIWBeautyFilterFresh = 2,
+    /*!
+     浪漫
+     */
+    RCCallIWBeautyFilterRomantic = 3
+};
+
 #endif /* RCCallIWDefine_h */
