@@ -75,42 +75,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setVideoConfig:(nullable RCCallIWVideoConfig *)config;
 
 /*!
- 设置美颜参数
- 
- @param enable YES/NO 是否开启美颜 默认关闭
- @param option 美颜配置参数
- */
-- (void)setBeautyOption:(BOOL)enable option:(nullable RCCallIWBeautyOption *)option;
-
-/*!
- 获取当前美颜参数
-
- @return RCCallIWBeautyOption 当前美颜参数对象
- */
-- (RCCallIWBeautyOption *)getCurrentBeautyOption;
-
-/*!
- 配置视频滤镜
- 
- @param filter 滤镜类型
- */
-- (void)setBeautyFilter: (RCCallIWBeautyFilter)filter;
-
-/*!
- 获取当前滤镜参数
-
- @return RCCallIWBeautyFilter 当前滤镜类型
- */
-- (RCCallIWBeautyFilter)getCurrentBeautyFilter;
-
-/*!
- 重置美颜的滤镜参数
- 因为 RCRTCBeautyEngine 类是单例对象，所以会保留开发者设置的美颜参数或滤镜类型，
- 在需要重置美颜的时候（例如重复进入房间时）需要调用 reset 方法重置所有美颜参数和滤镜。
- */
-- (void)resetBeauty;
-
-/*!
  配置监听
  
  @param delegate 监听代理

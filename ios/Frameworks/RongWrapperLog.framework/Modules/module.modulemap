@@ -1,6 +1,0 @@
-framework module RongWrapperLog {
-  umbrella header "RongWrapperLog.h"
-
-  export *
-  module * { export * }
-}

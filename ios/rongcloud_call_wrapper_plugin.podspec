@@ -1,10 +1,21 @@
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
-# Run `pod lib lint flutter_calllib_plugin.podspec` to validate before publishing.
-#
+ios_sdk_version = 'Unknown'
+
+config = File.expand_path(File.join('..', '..', 'version.config'), __FILE__)
+
+File.foreach(config) do |line|
+    matches = line.match(/ios_call_sdk_version\=(.*)/)
+    if matches
+      ios_sdk_version = matches[1].split("#")[0].strip
+    end
+end
+
+if ios_sdk_version == 'Unknown'
+    raise "You need to config ios_sdk_version in version.config!!"
+end
+
 Pod::Spec.new do |s|
   s.name             = 'rongcloud_call_wrapper_plugin'
-  s.version          = '5.1.15'
+  s.version          = '0.0.1'
   s.summary          = 'Rongcloud calllib interface wrapper for flutter.'
   s.description      = <<-DESC
 Rongcloud calllib interface wrapper for flutter.
@@ -21,8 +32,7 @@ Rongcloud calllib interface wrapper for flutter.
 
   s.vendored_frameworks = ['Frameworks/*.xcframework','Frameworks/*.framework']
 
-  s.dependency 'RongCloudIM/IMLib', '5.3.1'
-  s.dependency 'RongCloudRTC/RongCallLib', '5.3.1'
+  s.dependency 'RongCloudRTC/RongCallLib', ios_sdk_version
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }

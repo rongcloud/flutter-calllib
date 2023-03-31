@@ -1,6 +1,6 @@
 name: rongcloud_call_wrapper_plugin
 description: Rongcloud calllib interface wrapper for flutter.
-version: 5.3.1
+version: 5.3.3
 homepage: https://www.rongcloud.cn/
 
 environment:
@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  rongcloud_im_wrapper_plugin: 5.3.1
+  rongcloud_im_wrapper_plugin: 5.3.3
 
 dev_dependencies:
   flutter_test:
