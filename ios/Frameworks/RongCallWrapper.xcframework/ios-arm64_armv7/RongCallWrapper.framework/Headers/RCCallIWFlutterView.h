@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)frameRendered;
 
+// 当原生层摄像头进行操作的时候 通知 Flutter 层的 view 进行视图的镜像操作
+- (void)onMirrorChanged:(BOOL)mirror;
+
 @end
 
 @interface RCCallIWFlutterView : NSObject

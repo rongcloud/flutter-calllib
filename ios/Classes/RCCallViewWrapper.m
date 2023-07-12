@@ -218,6 +218,22 @@
     }
 }
 
+- (void)onMirrorChanged:(BOOL)mirror{
+    if (sink != nil) {
+        __weak typeof(sink) weak = sink;
+        NSMutableDictionary *arguments = [NSMutableDictionary dictionary];
+        [arguments setObject:@"onMirrorChanged" forKey:@"event"];
+        [arguments setObject:@(mirror) forKey:@"mirror"];
+    
+        dispatch_to_main_queue(^{
+            typeof(weak) strong = weak;
+            if (strong != nil) {
+                strong(arguments);
+            }
+        });
+    }
+}
+
 #pragma mark -
 
 - (NSString *)description {

@@ -3,7 +3,7 @@ part of 'rongcloud_call_engine.dart';
 class RCCallView extends StatefulWidget {
   static Future<RCCallView> create({
     BoxFit fit = BoxFit.contain,
-    bool mirror = true,
+    bool mirror = false,
     Function()? onFirstFrameRendered,
   }) async {
     int id = await _channel.invokeMethod('create');
@@ -72,7 +72,7 @@ class _RCCallViewState extends State<RCCallView> {
           width: width.toDouble(),
           height: height.toDouble(),
           child: Transform(
-            transform: Matrix4.rotationY(mirror ? -pi : 0.0),
+            transform: Matrix4.rotationY(_mirror ? -pi : 0.0),
             alignment: FractionalOffset.center,
             child: Texture(textureId: view._id),
           ),
@@ -112,7 +112,15 @@ class _RCCallViewState extends State<RCCallView> {
       case 'onSizeChanged':
         _changeSize(json);
         break;
+      case 'onMirrorChanged':
+        _mirrorChanged(json);
+        break;
     }
+  }
+
+  void _mirrorChanged(Map<dynamic, dynamic> json) {
+    _mirror = json['mirror'];
+    if (mounted) setState(() {});
   }
 
   void _changeSize(Map<dynamic, dynamic> json) {
@@ -127,5 +135,5 @@ class _RCCallViewState extends State<RCCallView> {
   int width = 0, height = 0;
 
   BoxFit _fit = BoxFit.contain;
-  bool _mirror = true;
+  bool _mirror = false;
 }

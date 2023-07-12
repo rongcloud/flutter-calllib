@@ -224,6 +224,7 @@ class RCCallVideoConfig {
     this.hardWareEncoderColor = -1,
     this.hardWareEncoderFrameRate = 30,
     this.hardwareEncoderBitrateMode = RCCallVideoBitrateMode.cbr,
+    this.previewMirror = true
   });
 
   RCCallVideoConfig.fromJson(Map<dynamic, dynamic> json)
@@ -235,6 +236,7 @@ class RCCallVideoConfig {
         hardWareEncoderColor = json['hardWareEncoderColor'],
         hardWareEncoderFrameRate = json['hardWareEncoderFrameRate'],
         hardwareEncoderBitrateMode = RCCallVideoBitrateMode.values[json['hardwareEncoderBitrateMode']],
+        previewMirror = json['previewMirror'],
         profile = RCCallVideoProfile.values[json['profile']],
         defaultCamera = RCCallCamera.values[json['defaultCamera']],
         cameraOrientation = RCCallCameraOrientation.values[json['cameraOrientation']];
@@ -249,6 +251,7 @@ class RCCallVideoConfig {
       'enableHardwareEncoder': enableHardwareEncoder,
       'enableHardwareEncoderHighProfile': enableHardwareEncoderHighProfile,
       'enableEncoderTexture': enableEncoderTexture,
+      'previewMirror' : previewMirror,
       'hardWareEncoderColor': hardWareEncoderColor,
       'hardWareEncoderFrameRate': hardWareEncoderFrameRate,
       'hardwareEncoderBitrateMode': hardwareEncoderBitrateMode.index,
@@ -280,6 +283,7 @@ class RCCallVideoConfig {
   int hardWareEncoderColor;
   int hardWareEncoderFrameRate;
   RCCallVideoBitrateMode hardwareEncoderBitrateMode;
+  bool previewMirror;
 }
 
 class RCCallBeautyOption {

@@ -320,7 +320,7 @@ NSInteger fromCallIWCallType(RCCallIWCallType type) {
     NSNumber *profile = [arguments rccall_getNumber:@"profile"];
     NSNumber *defaultCamera = [arguments rccall_getNumber:@"defaultCamera"];
     NSNumber *cameraOrientation = [arguments rccall_getNumber:@"cameraOrientation"];
-    bool isPreviewMirror = NO;
+    bool isPreviewMirror = [arguments rccall_getBool:@"isPreviewMirror" defaultValue:YES];
     
     RCCallIWVideoConfig *config = [[RCCallIWVideoConfig alloc] init];
     config.profile = profile ? [self toCallIWVideoProfile:[profile intValue]] : kDefaultCallIWVideoProfile;

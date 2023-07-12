@@ -30,7 +30,7 @@
 		</data>
 		<key>Headers/RCCallIWFlutterView.h</key>
 		<data>
-		FzklTivDnyADXshivpXNOEZAKw8=
+		y2cqUnU8QMNZ3CG0+C2mMNsxzic=
 		</data>
 		<key>Headers/RCCallIWIOSPushConfig.h</key>
 		<data>
@@ -46,11 +46,15 @@
 		</data>
 		<key>Headers/RCCallIWVideoConfig.h</key>
 		<data>
-		2u9JFl2Mhd3/IzmaxfoVlh0b/U4=
+		kOdMpo6eHS1xv3wjNG6+ZiTkjLo=
 		</data>
 		<key>Headers/RCCallIWVideoFrameDelegate.h</key>
 		<data>
 		4E8xM7l79Q0pj+PqnOIaLalKHZ0=
+		</data>
+		<key>Headers/RCCallIWVideoView.h</key>
+		<data>
+		ibFWGpV35ABCTAhuEtUsgKHQVnw=
 		</data>
 		<key>Headers/RongCallWrapper.h</key>
 		<data>
@@ -149,11 +153,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			FzklTivDnyADXshivpXNOEZAKw8=
+			y2cqUnU8QMNZ3CG0+C2mMNsxzic=
 			</data>
 			<key>hash2</key>
 			<data>
-			hNDTktT9kD2E4/1H0I8a8xq8Q6ZK+UwUHpOZDbTX7b8=
+			IgRu9C00s2UBfZL10F56c7rG2Xu3yS1AM1ET+CChUlQ=
 			</data>
 		</dict>
 		<key>Headers/RCCallIWIOSPushConfig.h</key>
@@ -193,11 +197,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			2u9JFl2Mhd3/IzmaxfoVlh0b/U4=
+			kOdMpo6eHS1xv3wjNG6+ZiTkjLo=
 			</data>
 			<key>hash2</key>
 			<data>
-			Ic7kROsJB53RjGx8au2mNJvZMJ4LRCUrSyU49pFb7FM=
+			UOkF0SEprFatUeYdw91eH8BhSBNcYalRGdJV7OeZszw=
 			</data>
 		</dict>
 		<key>Headers/RCCallIWVideoFrameDelegate.h</key>
@@ -209,6 +213,17 @@
 			<key>hash2</key>
 			<data>
 			eVaF/p0qpzOF6/ryCEJ7Q2gdkyovIwmHM2QRFaFLjrU=
+			</data>
+		</dict>
+		<key>Headers/RCCallIWVideoView.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			ibFWGpV35ABCTAhuEtUsgKHQVnw=
+			</data>
+			<key>hash2</key>
+			<data>
+			jiI7NxMC7CAXlY9mE0LW6YkSMEXIfnjoVS7yDUorUBg=
 			</data>
 		</dict>
 		<key>Headers/RongCallWrapper.h</key>

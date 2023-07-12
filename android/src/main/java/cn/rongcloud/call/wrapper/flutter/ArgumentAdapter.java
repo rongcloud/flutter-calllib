@@ -280,7 +280,11 @@ final class ArgumentAdapter {
         if (cameraOrientation != null) {
             builder.withCameraOrientation(toRCCallIWCameraOrientation((Integer) cameraOrientation));
         }
-        builder.withPreviewMirror(false);
+        Object previewMirror = map.get("previewMirror");
+        if (previewMirror != null) {
+            builder.withPreviewMirror((Boolean) previewMirror);
+        }
+        // builder.withPreviewMirror(false);
         return builder.build();
     }
 

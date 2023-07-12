@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) RCCallIWCameraOrientation cameraOrientation;
 
 /*!
- 本地摄像头采集是否镜像
+ 本地预览是否镜像
  
  前置摄像头默认: YES，后置摄像头默认: NO
  */
