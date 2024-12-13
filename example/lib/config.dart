@@ -1,23 +1,16 @@
-/// 示例说明：本示例需要分别在 iOS 和 android 设备中运行
-/// 其中 android 设备会登陆用户 A
-/// iOS 设备会登陆用户 B
-/// 以下 TODO 参数需要自行配置
+class GlobalConfig {
+  static const String appKey = 'c9kqb3rdkbb8j';
 
-class AppConfig {
-  /// TODO app key
-  static const String app_key = '';
+  static const String appVersion = '0.1';
 
-  /// TODO user a token
-  static const String token_a = '';
+  static const String appTitle = 'CallLib DEMO';
 
-  /// TODO user a id
-  static const String user_a = '';
+  static const String prefix = 'ftd_';
 
-  /// TODO user b token
-  static const String token_b = '';
+  static const String navServer = 'nav-ucqa.rongcloud.net';
+  static const String fileServer = 'up.qbox.me';
 
-  /// TODO user b id
-  static const String user_b = '';
+  static const String mediaServer = '';
 
-  static const bool isDebug = false;
+  static const String host = 'http://47.93.191.216:8080';
 }

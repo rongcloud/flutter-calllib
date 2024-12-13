@@ -133,7 +133,7 @@ $ flutter pub add rongcloud_call_wrapper_plugin
 
 ```
 dependencies:
-  rongcloud_call_wrapper_plugin: 5.6.11
+  rongcloud_call_wrapper_plugin: 5.12.0
 ```
 
 2. 在代码中导入 Call Lib ：

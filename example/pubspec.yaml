@@ -7,7 +7,7 @@ version: 0.0.1
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.12.0 <4.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -31,7 +31,7 @@ dependencies:
   rongcloud_call_wrapper_plugin:
     path: ../
 
-  rongcloud_beauty_wrapper_plugin: 5.4.0
+  rongcloud_beauty_wrapper_plugin: ^5.12.0
   # audio_routing:
   #   path: ./plugins/audio_routing
 
