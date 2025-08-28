@@ -466,7 +466,8 @@ class _CallPageState extends State<CallPage> {
     RCCallAudioConfig audioConfig = RCCallAudioConfig.create();
     await Utils.callEngine?.setAudioConfig(audioConfig);
 
-    RCCallVideoConfig videoConfig = RCCallVideoConfig.create(profile: RCCallVideoProfile.profile_1080_1920_high);
+    RCCallVideoConfig videoConfig = RCCallVideoConfig.create(
+        profile: RCCallVideoProfile.profile_1080_1920_high);
     await Utils.callEngine?.setVideoConfig(videoConfig);
     Utils.callEngine?.enableCamera(false);
 
@@ -582,7 +583,8 @@ class _CallPageState extends State<CallPage> {
     }
 
     Utils.callEngine?.enableCamera(false);
-    _session = await Utils.callEngine?.startCall(target, RCCallMediaType.audio_video);
+    _session =
+        await Utils.callEngine?.startCall(target, RCCallMediaType.audio_video);
     if (Platform.isAndroid) {
       // routing.startAudioRouteing();
     }

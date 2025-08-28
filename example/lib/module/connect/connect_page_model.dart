@@ -62,7 +62,7 @@ class ConnectPageModel extends AbstractModel implements Model {
     if (file.isEmpty) file = GlobalConfig.fileServer;
     if (media.isEmpty) media = GlobalConfig.mediaServer;
 
-    RCIMIWEngineOptions options = RCIMIWEngineOptions.create();
+    RCIMIWEngineOptions options = RCIMIWEngineOptions.create(logLevel: RCIMIWLogLevel.verbose);
     options.naviServer = navigate;
     options.fileServer = file;
 

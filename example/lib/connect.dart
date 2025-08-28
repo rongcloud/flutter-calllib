@@ -75,14 +75,16 @@ class Connect extends StatelessWidget {
     // 调用 connect 方法，连接融云服务器
     // 跳转到 CallPage 页面
 
-    RCIMIWEngineOptions options = RCIMIWEngineOptions.create();
+    RCIMIWEngineOptions options =
+        RCIMIWEngineOptions.create(logLevel: RCIMIWLogLevel.verbose);
     Utils.imEngine = await RCIMIWEngine.create(AppConfig.app_key, options);
     Utils.callEngine = await RCCallEngine.create();
     // Utils.rtcEngine = await RCRTCEngine.create();
 
     String token = Platform.isAndroid ? AppConfig.token_a : AppConfig.token_b;
 
-    Utils.imEngine?.connect(token, 0, callback: RCIMIWConnectCallback(onConnected: (code, userId) {
+    Utils.imEngine?.connect(token, 0,
+        callback: RCIMIWConnectCallback(onConnected: (code, userId) {
       print('onConnected: $code, $userId');
       Utils.currentUserId = userId;
       _toCallingPage(context);
@@ -104,7 +106,6 @@ class Connect extends StatelessWidget {
       // setState(() {
       //   this.hasPermission = true;
       // });
-
     } else {
       print("蓝牙权限申请不通过");
       // this.hasPermission = false;

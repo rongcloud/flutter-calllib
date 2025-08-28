@@ -14,7 +14,9 @@ void init(BuildContext context) {
 
 extension NumExtension on num {
   get dp {
-    return ScreenUtil().scaleWidth < ScreenUtil().scaleHeight ? ScreenUtil().setWidth(this) : ScreenUtil().setHeight(this);
+    return ScreenUtil().scaleWidth < ScreenUtil().scaleHeight
+        ? ScreenUtil().setWidth(this)
+        : ScreenUtil().setHeight(this);
   }
 
   @Deprecated('Use dp instead')

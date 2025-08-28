@@ -16,44 +16,29 @@ public final class GeneratedPluginRegistrant {
   private static final String TAG = "GeneratedPluginRegistrant";
   public static void registerWith(@NonNull FlutterEngine flutterEngine) {
     try {
-      flutterEngine.getPlugins().add(new com.ljk.leak_detector.LeakDetectorPlugin());
-    } catch(Exception e) {
-      Log.e(TAG, "Error registering plugin leak_detector, com.ljk.leak_detector.LeakDetectorPlugin", e);
-    }
-    try {
       flutterEngine.getPlugins().add(new com.baseflow.permissionhandler.PermissionHandlerPlugin());
-    } catch(Exception e) {
+    } catch (Exception e) {
       Log.e(TAG, "Error registering plugin permission_handler_android, com.baseflow.permissionhandler.PermissionHandlerPlugin", e);
     }
     try {
       flutterEngine.getPlugins().add(new cn.rongcloud.beauty.wrapper.flutter.RCBeautyWrapperPlugin());
-    } catch(Exception e) {
+    } catch (Exception e) {
       Log.e(TAG, "Error registering plugin rongcloud_beauty_wrapper_plugin, cn.rongcloud.beauty.wrapper.flutter.RCBeautyWrapperPlugin", e);
     }
     try {
       flutterEngine.getPlugins().add(new cn.rongcloud.call.wrapper.flutter.RCCallWrapperPlugin());
-    } catch(Exception e) {
+    } catch (Exception e) {
       Log.e(TAG, "Error registering plugin rongcloud_call_wrapper_plugin, cn.rongcloud.call.wrapper.flutter.RCCallWrapperPlugin", e);
     }
     try {
       flutterEngine.getPlugins().add(new cn.rongcloud.im.wrapper.flutter.RCIMWrapperPlugin());
-    } catch(Exception e) {
+    } catch (Exception e) {
       Log.e(TAG, "Error registering plugin rongcloud_im_wrapper_plugin, cn.rongcloud.im.wrapper.flutter.RCIMWrapperPlugin", e);
     }
     try {
       flutterEngine.getPlugins().add(new io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin());
-    } catch(Exception e) {
+    } catch (Exception e) {
       Log.e(TAG, "Error registering plugin shared_preferences_android, io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin", e);
-    }
-    try {
-      flutterEngine.getPlugins().add(new com.tekartik.sqflite.SqflitePlugin());
-    } catch(Exception e) {
-      Log.e(TAG, "Error registering plugin sqflite, com.tekartik.sqflite.SqflitePlugin", e);
-    }
-    try {
-      flutterEngine.getPlugins().add(new creativemaybeno.wakelock.WakelockPlugin());
-    } catch(Exception e) {
-      Log.e(TAG, "Error registering plugin wakelock, creativemaybeno.wakelock.WakelockPlugin", e);
     }
   }
 }

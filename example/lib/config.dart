@@ -1,16 +1,23 @@
-class GlobalConfig {
-  static const String appKey = 'c9kqb3rdkbb8j';
+/// 示例说明：本示例需要分别在 iOS 和 android 设备中运行
+/// 其中 android 设备会登陆用户 A
+/// iOS 设备会登陆用户 B
+/// 以下 TODO 参数需要自行配置
 
-  static const String appVersion = '0.1';
+class AppConfig {
+  /// TODO app key
+  static const String app_key = 'mgb7ka1nm8afg';
 
-  static const String appTitle = 'CallLib DEMO';
+  /// TODO user a token
+  static const String token_a = 'ewson7O+o9U67kUubjP9A41JwHYw4JikSGpuV8xSJkM=@ecj8.cn.rongnav.com;ecj8.cn.rongcfg.com';
 
-  static const String prefix = 'ftd_';
+  /// TODO user a id
+  static const String user_a = 'android';
 
-  static const String navServer = 'nav-ucqa.rongcloud.net';
-  static const String fileServer = 'up.qbox.me';
+  /// TODO user b token
+  static const String token_b = '+XVK+LyNj7PZv1brllwrgsK3g7JPsqnZ9PJ68MLSX00=@ecj8.cn.rongnav.com;ecj8.cn.rongcfg.com';
 
-  static const String mediaServer = '';
+  /// TODO user b id
+  static const String user_b = 'ios';
 
-  static const String host = 'http://47.93.191.216:8080';
+  static const bool isDebug = false;
 }
