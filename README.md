@@ -1,5 +1,7 @@
 # 融云 Flutter CallLib 
 
+融云 RTC Flutter 插件，基于 iOS/Android 原生 RTCLib SDK 封装，为 Flutter 应用提供跨平台音视频通话能力。
+
 CallLib 是在 RTCLib 基础上，额外封装了一套音视频呼叫功能 SDK，包含了单人视频呼叫的各种场景和功能，通过集成它，您可以自由的实现音视频呼叫场景的各种玩法。
 
 ## 准备工作
