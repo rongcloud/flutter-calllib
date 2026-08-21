@@ -1,6 +1,0 @@
-framework module RongCallWrapper {
-  umbrella header "RongCallWrapper.h"
-
-  export *
-  module * { export * }
-}

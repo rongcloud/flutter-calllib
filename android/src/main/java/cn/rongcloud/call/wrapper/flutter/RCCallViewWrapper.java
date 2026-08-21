@@ -1,5 +1,6 @@
 package cn.rongcloud.call.wrapper.flutter;
 
+import android.content.Context;
 import android.util.LongSparseArray;
 
 import androidx.annotation.NonNull;
@@ -24,9 +25,10 @@ public class RCCallViewWrapper implements MethodChannel.MethodCallHandler {
     private RCCallViewWrapper() {
     }
 
-    void init(TextureRegistry registry, BinaryMessenger messenger) {
+    void init(TextureRegistry registry, BinaryMessenger messenger, Context context) {
         this.registry = registry;
         this.messenger = messenger;
+        this.context = context;
         channel = new MethodChannel(messenger, "cn.rongcloud.call.flutter/view");
         channel.setMethodCallHandler(this);
     }
@@ -59,7 +61,7 @@ public class RCCallViewWrapper implements MethodChannel.MethodCallHandler {
     private void create(@NonNull MethodChannel.Result result) {
         RCCallView view = null;
         try {
-            view = new RCCallView(registry, messenger);
+            view = new RCCallView(registry, messenger, context);
         } catch (IllegalAccessException | InvocationTargetException | InstantiationException e) {
             e.printStackTrace();
         }
@@ -87,12 +89,12 @@ public class RCCallViewWrapper implements MethodChannel.MethodCallHandler {
 
     static class RCCallView extends RCCallIWFlutterRenderEventsListener implements EventChannel.StreamHandler {
 
-        private RCCallView(TextureRegistry registry, BinaryMessenger messenger) throws IllegalAccessException, InvocationTargetException, InstantiationException {
+        private RCCallView(TextureRegistry registry, BinaryMessenger messenger, Context context) throws IllegalAccessException, InvocationTargetException, InstantiationException {
             entry = registry.createSurfaceTexture();
             id = entry.id();
             channel = new EventChannel(messenger, "cn.rongcloud.call.flutter/view:" + id);
             channel.setStreamHandler(this);
-            view = new RCCallIWFlutterView("RCCallView[" + id + "]");
+            view = new RCCallIWFlutterView(context, "RCCallView[" + id + "]");
             view.setRendererEventsListener(this);
             view.createSurface(entry.surfaceTexture());
         }
@@ -144,6 +146,7 @@ public class RCCallViewWrapper implements MethodChannel.MethodCallHandler {
 
     private TextureRegistry registry;
     private BinaryMessenger messenger;
+    private Context context;
     private MethodChannel channel;
 
     private final LongSparseArray<RCCallView> views = new LongSparseArray<>();

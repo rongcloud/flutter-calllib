@@ -15,7 +15,7 @@ end
 
 Pod::Spec.new do |s|
   s.name             = 'rongcloud_call_wrapper_plugin'
-  s.version          = '0.0.1'
+  s.version          = '5.44.0'
   s.summary          = 'Rongcloud calllib interface wrapper for flutter.'
   s.description      = <<-DESC
 Rongcloud calllib interface wrapper for flutter.
@@ -33,7 +33,7 @@ Rongcloud calllib interface wrapper for flutter.
   s.vendored_frameworks = ['Frameworks/*.xcframework','Frameworks/*.framework']
 
   s.dependency 'RongCloudRTC/RongCallLib', ios_sdk_version
-  s.dependency 'RongWrapperLog', '5.4.0'
+  s.dependency 'RongWrapperLog', '5.4.1'
   
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }

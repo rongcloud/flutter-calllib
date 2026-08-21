@@ -12,7 +12,10 @@ public class RCCallWrapperPlugin implements FlutterPlugin {
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
         RCCallEngineWrapper.getInstance().init(flutterPluginBinding.getBinaryMessenger());
-        RCCallViewWrapper.getInstance().init(flutterPluginBinding.getTextureRegistry(), flutterPluginBinding.getBinaryMessenger());
+        RCCallViewWrapper.getInstance().init(
+                flutterPluginBinding.getTextureRegistry(),
+                flutterPluginBinding.getBinaryMessenger(),
+                flutterPluginBinding.getApplicationContext());
     }
 
     @Override

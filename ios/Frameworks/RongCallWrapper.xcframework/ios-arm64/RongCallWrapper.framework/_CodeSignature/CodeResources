@@ -80,6 +80,10 @@
 		<data>
 		B8kB+UwS+Djpk42nGs6PsuZb4i4=
 		</data>
+		<key>RongRTCLib.bundle/README.md</key>
+		<data>
+		QRET3mxpm/IWUCr7S8bmekmYD+o=
+		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
@@ -279,6 +283,17 @@
 			<key>hash2</key>
 			<data>
 			wWEpSmpBqk1A1pnvwExjRDLmRm4kLI6s07dug5+9ftg=
+			</data>
+		</dict>
+		<key>RongRTCLib.bundle/README.md</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			QRET3mxpm/IWUCr7S8bmekmYD+o=
+			</data>
+			<key>hash2</key>
+			<data>
+			3Toj/j0EKYBszRS5IQEldZx92LEOdM8kiLPU5Fy1AFI=
 			</data>
 		</dict>
 	</dict>

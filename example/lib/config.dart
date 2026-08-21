@@ -5,16 +5,16 @@
 
 class AppConfig {
   /// TODO app key
-  static const String app_key = 'mgb7ka1nm8afg';
+  static const String app_key = '';
 
   /// TODO user a token
-  static const String token_a = 'ewson7O+o9U67kUubjP9A41JwHYw4JikSGpuV8xSJkM=@ecj8.cn.rongnav.com;ecj8.cn.rongcfg.com';
+  static const String token_a = '';
 
   /// TODO user a id
   static const String user_a = 'android';
 
   /// TODO user b token
-  static const String token_b = '+XVK+LyNj7PZv1brllwrgsK3g7JPsqnZ9PJ68MLSX00=@ecj8.cn.rongnav.com;ecj8.cn.rongcfg.com';
+  static const String token_b = '';
 
   /// TODO user b id
   static const String user_b = 'ios';

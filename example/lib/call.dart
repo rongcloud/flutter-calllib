@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_call_plugin_example/config.dart';
 import 'package:handy_toast/handy_toast.dart';
 import 'package:rongcloud_beauty_wrapper_plugin/rongcloud_beauty_wrapper_plugin.dart';
@@ -26,12 +27,37 @@ class CallPage extends StatefulWidget {
 }
 
 class _CallPageState extends State<CallPage> {
+  static const MethodChannel _pictureInPictureChannel = MethodChannel(
+    'cn.rongcloud.call.demo/picture_in_picture',
+  );
+
   @override
   void initState() {
     super.initState();
 
     _state = AppState.connected;
+    if (Platform.isIOS) {
+      _pictureInPictureChannel.setMethodCallHandler(
+        _handlePictureInPictureMethodCall,
+      );
+      _syncPictureInPictureState();
+    }
     _initEngine();
+  }
+
+  @override
+  void dispose() {
+    if (Platform.isIOS) {
+      _pictureInPictureChannel.setMethodCallHandler(null);
+      _pictureInPictureChannel.invokeMethod<bool>(
+        'setEnabled',
+        <String, bool>{'enabled': false},
+      ).catchError((Object error) {
+        debugPrint('[PiP] disable during dispose failed: $error');
+        return false;
+      });
+    }
+    super.dispose();
   }
 
   @override
@@ -41,6 +67,27 @@ class _CallPageState extends State<CallPage> {
         home: Scaffold(
           appBar: AppBar(
             title: const Text('flutter call plugin'),
+            actions: [
+              if (Platform.isIOS && _state == AppState.chatting)
+                IconButton(
+                  tooltip: _pictureInPictureActive
+                      ? '关闭系统画中画'
+                      : (_pictureInPictureEnabled ? '取消画中画' : '开启系统画中画'),
+                  onPressed:
+                      _pictureInPictureBusy ? null : _togglePictureInPicture,
+                  icon: _pictureInPictureBusy
+                      ? const SizedBox.square(
+                          dimension: 20,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : Icon(
+                          _pictureInPictureEnabled
+                              ? Icons.picture_in_picture
+                              : Icons.picture_in_picture_alt,
+                          color: _pictureInPictureActive ? Colors.green : null,
+                        ),
+                ),
+            ],
           ),
           body: _build(),
         ),
@@ -551,6 +598,8 @@ class _CallPageState extends State<CallPage> {
         // routing.stopAudioRouteing();
       }
 
+      await _setPictureInPictureEnabled(false);
+
       'Disconnect, reason = $reason'.toast();
       _state = AppState.connected;
       _background = null;
@@ -619,6 +668,7 @@ class _CallPageState extends State<CallPage> {
   }
 
   void _hangup() async {
+    await _setPictureInPictureEnabled(false);
     int code = await Utils.callEngine?.hangup() ?? -1;
     if (code != 0) {
       'Hangup Call Error $code'.toast();
@@ -698,6 +748,118 @@ class _CallPageState extends State<CallPage> {
     setState(() {});
   }
 
+  Future<dynamic> _handlePictureInPictureMethodCall(MethodCall call) async {
+    if (call.method != 'onStateChanged') {
+      return null;
+    }
+
+    final Map<dynamic, dynamic> arguments =
+        call.arguments as Map<dynamic, dynamic>? ?? <dynamic, dynamic>{};
+    final bool enabled = arguments['enabled'] == true;
+    final bool active = arguments['active'] == true;
+    final String state = arguments['state'] as String? ?? 'unknown';
+    final String? message = arguments['message'] as String?;
+
+    debugPrint(
+      '[PiP] native state=$state enabled=$enabled active=$active'
+      '${message == null ? '' : ' message=$message'}',
+    );
+    if (!mounted) {
+      return null;
+    }
+
+    setState(() {
+      _pictureInPictureEnabled = enabled;
+      _pictureInPictureActive = active;
+      _pictureInPictureBusy = false;
+    });
+    if (state == 'active') {
+      '系统画中画已启动'.toast();
+    } else if (state == 'failed') {
+      (message ?? '系统画中画启动失败').toast();
+    }
+    return null;
+  }
+
+  Future<void> _syncPictureInPictureState() async {
+    try {
+      final Map<dynamic, dynamic>? state =
+          await _pictureInPictureChannel.invokeMapMethod<dynamic, dynamic>(
+        'getState',
+      );
+      if (!mounted || state == null) {
+        return;
+      }
+      setState(() {
+        _pictureInPictureEnabled = state['enabled'] == true;
+        _pictureInPictureActive = state['active'] == true;
+      });
+    } on MissingPluginException {
+      debugPrint('[PiP] demo native channel is unavailable');
+    } on PlatformException catch (error) {
+      debugPrint('[PiP] failed to query state: ${error.message}');
+    }
+  }
+
+  Future<void> _togglePictureInPicture() async {
+    await _setPictureInPictureEnabled(!_pictureInPictureEnabled,
+        showResult: true);
+  }
+
+  Future<void> _setPictureInPictureEnabled(
+    bool enabled, {
+    bool showResult = false,
+  }) async {
+    if (!Platform.isIOS || _pictureInPictureBusy) {
+      return;
+    }
+    if (!enabled && !_pictureInPictureEnabled) {
+      return;
+    }
+
+    if (mounted) {
+      setState(() {
+        _pictureInPictureBusy = true;
+      });
+    }
+    try {
+      final bool actualEnabled =
+          await _pictureInPictureChannel.invokeMethod<bool>(
+                'setEnabled',
+                <String, bool>{'enabled': enabled},
+              ) ??
+              false;
+      debugPrint(
+        '[PiP] set enabled=$enabled result=$actualEnabled',
+      );
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _pictureInPictureEnabled = actualEnabled;
+        if (!actualEnabled) {
+          _pictureInPictureActive = false;
+        }
+      });
+      if (showResult) {
+        (actualEnabled ? '画中画已开启，等待远端视频帧' : '画中画已关闭').toast();
+      }
+    } on PlatformException catch (error) {
+      debugPrint(
+        '[PiP] set enabled=$enabled failed: ${error.code} ${error.message}',
+      );
+      if (showResult && mounted) {
+        (error.message ?? '画中画操作失败').toast();
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _pictureInPictureBusy = false;
+        });
+      }
+    }
+  }
+
   void _switchView() async {
     _mine = !_mine;
 
@@ -751,6 +913,9 @@ class _CallPageState extends State<CallPage> {
   bool _preview = true;
   bool _microphone = true;
   bool _speaker = false;
+  bool _pictureInPictureEnabled = false;
+  bool _pictureInPictureActive = false;
+  bool _pictureInPictureBusy = false;
 
   TextEditingController _controller = TextEditingController();
 }

@@ -1,6 +1,6 @@
-## 5.32.0
-* 更新 Android SDK 强制依赖 5.32.0
-* 更新 iOS SDK 强制依赖 5.32.0
+## 5.44.0
+
+* 更新 Flutter CallLib wrapper 与 Android/iOS 原生依赖。
 
 ## 5.24.4
 * 更新了英文注释
